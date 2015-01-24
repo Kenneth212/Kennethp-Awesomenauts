@@ -9,6 +9,7 @@ game.resources = [
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
 	 //The meta tiles work as solid tiles to make specific parts of the game solid.
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
+	 //The player will show because of this code.
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
