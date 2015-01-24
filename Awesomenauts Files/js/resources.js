@@ -8,6 +8,7 @@ game.resources = [
 	 //The background tiles for the game will create tiles on tiled.
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
 	 //The meta tiles work as solid tiles to make specific parts of the game solid.
+	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
@@ -18,7 +19,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
- 	 {name: "level01", type: "tmx", src: "data/map/test.tmx"},
+ 	 {name: "level01", type: "tmx", src: "data/map/level01.tmx"},
  	 //This part for level01 will run the game on the webpage.
 
 	/* Background music. 
