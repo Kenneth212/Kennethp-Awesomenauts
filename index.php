@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!-- The code here is for the full game to run and not much to mess with yet on here so, this just basically helps the game run -->
 <html>
 	<head>
 		<title>melonJS Template</title>
