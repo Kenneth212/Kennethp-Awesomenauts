@@ -49,6 +49,7 @@ game.PlayerEntity = me.Entity.extend({
 	if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
 		this.jumping = true;
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		//this will make the player jump.
 	};
 
 	if(me.input.isKeyPressed("attack")) {
