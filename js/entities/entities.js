@@ -46,6 +46,11 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.setCurrentAnimation("idle");
 	}
 
+	if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
+		this.jumping = true;
+		this.body.vel.y -= this.body.accel.y * me.timer.tick;
+	};
+
 	if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
 				console.log(!this.renderable.isCurrentAnimation)("attack");
