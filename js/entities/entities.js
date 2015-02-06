@@ -11,6 +11,8 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 		this.body.setVelocity(5, 20);
+		//Keeps track of which direction your charcter is going
+		this.facing = "right";
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.renderable.addAnimation("idle", [78]);
@@ -27,10 +29,12 @@ game.PlayerEntity = me.Entity.extend({
 			//setsVelocity() and multiplying it by me.timer.tick.
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.facing = "right";
 			this.flipX(true);
 		}
 		else if (me.input.isKeyPressed("left")){
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.facing = "left";
 			this.flipX(false);
 		}
 
