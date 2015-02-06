@@ -50,7 +50,7 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 	}
 });
-
+//The game.PlayerBaseEntity
 game.PlayerBaseEntity = me.Entity.extend({
 	init : function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, x, {
@@ -86,7 +86,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 	}
 
 });
-
+//The game.EnemyBaseEntity will create the enemy base
 game.EnemyBaseEntity = me.Entity.extend({
 	init : function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, x, {
