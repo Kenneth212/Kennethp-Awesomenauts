@@ -43,13 +43,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
-		if(this.body.vel.x !== 0) {
-			if(!this.renderable.isCurrentAnimation("walk")){
-				this.renderable.setCurrentAnimation("walk");
-		}
-	}else {
-		this.renderable.setCurrentAnimation("idle");
-	}
+		
 
 	if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
 		this.jumping = true;
@@ -69,6 +63,13 @@ game.PlayerEntity = me.Entity.extend({
 				this.renderable.setAnimationFrame();
 			}
 		}
+		if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")) {
+			if(!this.renderable.isCurrentAnimation("walk")){
+				this.renderable.setCurrentAnimation("walk");
+		}
+	}else if(!this.renderable.isCurrentAnimation("attack")){
+		this.renderable.setCurrentAnimation("idle");
+	}
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//used to check for collisions
@@ -118,6 +119,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.health = 10;
 		this.alwaysUpdate = true;
 		this.body.onCollision = this.onCollision.bind(this);
+		console.log("init");
 		this.type = "PlayerBaseEntity";
 
 		this.renderable.addAnimation("idle", [0]);
@@ -160,11 +162,16 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this);
 
 		this.type = "EnemyBaseEntity";
+
+		this.renderable.addAnimation("idle", [0]);
+		this.renderable.addAnimation("broken", [1]);
+		this.renderable.setCurrentAnimation("idle");
 	},
 
 	update:function(delta){
 		if(this.health<=0) {
 			this.broken = true;
+			this.renderable.setCurrentAnimation("broken");
 		}
 		this.body.update(delta);
 
