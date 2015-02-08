@@ -30,6 +30,7 @@ game.PlayerEntity = me.Entity.extend({
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 			this.facing = "right";
+			//used when interacting with the enemy base 
 			this.flipX(true);
 		}
 		else if (me.input.isKeyPressed("left")){
@@ -70,6 +71,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
+		//used to check for collisions
 		this.body.update(delta);
 		
 		this._super(me.Entity, "update", [delta]);
@@ -77,7 +79,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	collideHandler: function(response) {
-		if (response.b.type==='EnemyBaseEntity') {
+		if(response.b.type==='EnemyBaseEntity') {
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
 
@@ -89,6 +91,7 @@ game.PlayerEntity = me.Entity.extend({
 			}else if(xdif<70 && this==='left' && xdif>0) {
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x +1;
+				//used to block him from the left and the right
 			}
 		}
 	}
