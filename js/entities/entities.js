@@ -86,7 +86,8 @@ game.PlayerEntity = me.Entity.extend({
 			if(ydif<-40 && xdif<70 && xdif>-35){
 				this.body.falling = false;
 				this.body.vel.y = -1;
-				
+				//used so we dont fall from the enemy base
+				//the -40 is used to block the character
 			}
 
 			else if(xdif>-35 && this.facing==='right' && (xdif<0) && (xdif<0) && ydif>-50) {
