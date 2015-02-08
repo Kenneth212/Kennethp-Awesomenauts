@@ -58,7 +58,7 @@ game.PlayerEntity = me.Entity.extend({
 
 	if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
-				console.log(!this.renderable.isCurrentAnimation)("attack");
+				console.log(!this.renderable.isCurrentAnimation("attack"));
 				//Sets the current animation to attack and once that is over
 				//goes back to the idle animation
 				this.renderable.setCurrentAnimation("attack", "idle");
@@ -69,10 +69,28 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}
 
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 		
 		this._super(me.Entity, "update", [delta]);
 		return true;
+	},
+
+	collideHandler: function(response) {
+		if (response.b.type==='EnemyBaseEntity') {
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
+
+			console.log("xdif " + xdif + "ydif " + ydif);
+
+			if(xdif>-35 && this.facing==='right' && (xdif<0)) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x -1;
+			}else if(xdif<70 && this==='left' && xdif>0) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x +1;
+			}
+		}
 	}
 });
 //The game.PlayerBaseEntity
