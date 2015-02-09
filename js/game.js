@@ -43,7 +43,7 @@ var game = {
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		me.pool.register("EnemyCreep", game.EnemyCreep), true;
-
+		//the true makes more enemies
 
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
