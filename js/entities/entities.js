@@ -222,6 +222,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 			this.renderable.addAnimation("walk", [3, 4, 5],  80);
 			this.renderable.setCurrentAnimation('walk');
+			//this EnemyCreep thing is used so there would be enemies in the game.
 		},
 
 		update: function() {
