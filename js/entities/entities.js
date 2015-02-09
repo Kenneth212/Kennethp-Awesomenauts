@@ -105,7 +105,9 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.response.isCurrentAnimation("attack") && this.now=this.lastHit >= 1000){
+				//1000 = equals number of times to end enemy base
 				console.log("tower Hit");
+				//will show in inspect element to see if the enemy base is actually getting hit
 				this.lastHit = this.now;
 				response.b.loseHealth();
 			}
