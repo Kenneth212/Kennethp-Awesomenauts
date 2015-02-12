@@ -53,7 +53,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.jumping = true;
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		//this will make the player jump.
-	};
+		me.audio.play("jump");
+	}
 
 	if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
@@ -104,7 +105,7 @@ game.PlayerEntity = me.Entity.extend({
 				//used to block him from the left and the right
 			}
 
-			if(this.response.isCurrentAnimation("attack") && this.now=this.lastHit >= 1000){
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
 				//1000 = equals number of times to end enemy base
 				console.log("tower Hit");
 				//will show in inspect element to see if the enemy base is actually getting hit
@@ -158,7 +159,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 //The game.EnemyBaseEntity will create the enemy base
 game.EnemyBaseEntity = me.Entity.extend({
 	init : function(x, y, settings) {
-		this._super(me.Entity, 'init', [x, x, {
+		this._super(me.Entity, 'init', [x, y, {
 			image: "tower",
 			width: 100,
 			height: 100,
@@ -210,13 +211,13 @@ game.EnemyBaseEntity = me.Entity.extend({
 				spritewidth: "32",
 				spriteheight: "64",
 				getShape: function() {
-					return (new me.Rect(0, 0, 32, 64,)).toPolygon();
+					return (new me.Rect(0, 0, 32, 64)).toPolygon();
 				}
 			}]);
 			this.health = 10;
 			this.alwaysUpdate = true;
 
-			this.bodysetVelocity(3, 20);
+			this.body.setVelocity(3, 20);
 
 			this. type = "EnemyCreep";
 
@@ -225,8 +226,20 @@ game.EnemyBaseEntity = me.Entity.extend({
 			//this EnemyCreep thing is used so there would be enemies in the game.
 		},
 
-		update: function() {
+		update: function(delta) {
+		
 
+
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+
+
+
+		this.body.update(delta);
+		
+		this._super(me.Entity, "update", [delta]);
+
+
+			return true;
 		}
 	});
 
@@ -243,7 +256,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 				if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 					this.lastCreep = this.now;
-					var creepe = me.pool.pull("EnemyCreep", 1000, 0, ());
+					var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
 					me.game.world.addChild(creepe, 5);
 				}
 
