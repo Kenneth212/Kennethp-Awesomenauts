@@ -237,10 +237,11 @@ game.EnemyBaseEntity = me.Entity.extend({
 		},
 
 		update: function(delta) {
+			//so this area of code will make the creep do what we want it to do
 		this.now = new Date().getTime();
 
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
-
+		//so this will the creep move left just like the player
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 
 		this.body.update(delta);
