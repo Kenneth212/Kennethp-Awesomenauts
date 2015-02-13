@@ -12,6 +12,8 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 		this.type ="PlayerEntity";
 		this.health = 20;
+		//this shows how mush health we have
+		//the health can be changed
 		this.body.setVelocity(5, 20);
 		//Keeps track of which direction your charcter is going
 		this.facing = "right";
@@ -89,6 +91,8 @@ game.PlayerEntity = me.Entity.extend({
 	loseHealth: function(damage){
 		this.health = this.health - damage;
 		console.log(this.health);
+		//the console will show in inspect element if the player is being damaged
+		//the this.health - damage will make the creep damage the player
 	},
 
 	collideHandler: function(response) {
