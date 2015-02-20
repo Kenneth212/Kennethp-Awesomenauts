@@ -136,13 +136,16 @@ game.PlayerEntity = me.Entity.extend({
 					this.body.vel.x = 0;
 				}
 			}
-
+			//the 1000 is about the same to 10 
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
 					 && (Math.abs(ydif) <=40) && 
 					 ((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+				//this will allow the player to kill the enemy creep from both left and right.
 					 	{
 				this.lastHit = this.now;
 				response.b.loseHealth(1);
+				//this number shows the amount of times it will take to kill the enemy
+
 			}
 		}
 	}
@@ -266,7 +269,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			this.renderable.setCurrentAnimation('walk');
 			//this EnemyCreep thing is used so there would be enemies in the game.
 		},
-
+		//this is too make the creep to lose health.
 		loseHealth: function(damage){
 			this.health = this.health - damage;
 		},
