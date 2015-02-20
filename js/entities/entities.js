@@ -51,8 +51,6 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
-		
-
 	if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
 		this.jumping = true;
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
@@ -122,6 +120,29 @@ game.PlayerEntity = me.Entity.extend({
 				//will show in inspect element to see if the enemy base is actually getting hit
 				this.lastHit = this.now;
 				response.b.loseHealth();
+			}
+		}else if (response.b.type==='EnemyCreep'){
+			var xdif = this.pos.x - response.b.pos.x;
+			var ydif = this.pos.y - response.b.pos.y;
+
+			if (xdif>0) {
+				this.pos.x = this.pos.x + 1;
+				if(this.facing==="left"){
+					this.body.vel.x = 0;
+				}
+			}else {
+				this.pos.x = this.pos.x - 1;
+				if(this.facing==="right"){
+					this.body.vel.x = 0;
+				}
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+					 && (Math.abs(ydif) <=40) && 
+					 ((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+					 	{
+				this.lastHit = this.now;
+				response.b.loseHealth(1);
 			}
 		}
 	}
@@ -225,11 +246,12 @@ game.EnemyBaseEntity = me.Entity.extend({
 				height: 64,
 				spritewidth: "32",
 				spriteheight: "64",
-				getShape: function() {
+				getShape: function(){
 					return (new me.Rect(0, 0, 32, 64)).toPolygon();
 				}
 			}]);
 			this.health = 10;
+			this.now = new Date().getTime();
 			this.alwaysUpdate = true;
 			//this.attacking lets us know if the enemy is currently attacking
 			this.attacking = false;
@@ -237,9 +259,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			this.lastAttacking = new Date().getTime();
 			//keeps trackof the last time our creep hit anything
 			this.lastHit = new Date().getTime();
-			this.now = new Data().getTime();
 			this.body.setVelocity(3, 20);
-
 			this. type = "EnemyCreep";
 
 			this.renderable.addAnimation("walk", [3, 4, 5],  80);
@@ -247,7 +267,15 @@ game.EnemyBaseEntity = me.Entity.extend({
 			//this EnemyCreep thing is used so there would be enemies in the game.
 		},
 
+		loseHealth: function(damage){
+			this.health = this.health - damage;
+		},
+
 		update: function(delta) {
+			console.log(this.health);
+			if(this.health <= 0) {
+				me.game.world.removeChild(this);
+			}
 			//so this area of code will make the creep do what we want it to do
 		this.now = new Date().getTime();
 
