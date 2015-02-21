@@ -37,9 +37,6 @@ game.PlayerEntity = me.Entity.extend({
 		//this will show up in the inspect element to see if the player is losing health
 		if (this.health <= 0) {
 			this.dead = true;
-			this.pos.x = 10;
-			this.pos.y = 1;
-			this.health = game.data.playerHealth;
 		}
 		if(me.input.isKeyPressed("right")){
 			//adds to the position or my x by the velocity defined above in
@@ -116,10 +113,10 @@ game.PlayerEntity = me.Entity.extend({
 
 			else if(xdif>-35 && this.facing==='right' && (xdif<0) && (xdif<0) && ydif>-50) {
 				this.body.vel.x = 0;
-				this.pos.x = this.pos.x -1;
+				//this.pos.x = this.pos.x -1;
 			}else if(xdif<70 && this==='left' && xdif>0) {
 				this.body.vel.x = 0;
-				this.pos.x = this.pos.x +1;
+				//this.pos.x = this.pos.x +1;
 				//used to block him from the left and the right
 			}
 
@@ -135,12 +132,12 @@ game.PlayerEntity = me.Entity.extend({
 			var ydif = this.pos.y - response.b.pos.y;
 
 			if (xdif>0) {
-				this.pos.x = this.pos.x + 1;
+				//this.pos.x = this.pos.x + 1;
 				if(this.facing==="left"){
 					this.body.vel.x = 0;
 				}
 			}else {
-				this.pos.x = this.pos.x - 1;
+				//this.pos.x = this.pos.x - 1;
 				if(this.facing==="right"){
 					this.body.vel.x = 0;
 				}
@@ -351,6 +348,11 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 			update: function() {
 				this.now = new Date().getTime();
+
+				if(game.data.player.dead){
+					me.game.world.removeChild(game.data.player);
+					me.state.current().resetPlayer(10, 0);
+				}
 
 				if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 					this.lastCreep = this.now;
