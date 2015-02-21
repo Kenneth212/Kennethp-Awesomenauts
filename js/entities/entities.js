@@ -20,6 +20,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
 		this.dead = false;
+		//this.dead will show us if if its false that the player is dead(only shows up if its false)
 		this.lastAttack = new Date().getTime();
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
@@ -33,7 +34,7 @@ game.PlayerEntity = me.Entity.extend({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
-
+		//this will show up in the inspect element to see if the player is losing health
 		if (this.health <= 0) {
 			this.dead = true;
 			this.pos.x = 10;

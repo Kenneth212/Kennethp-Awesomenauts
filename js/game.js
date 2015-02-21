@@ -23,6 +23,7 @@ var game = {
 		gameManager: "",
 		player: ""
 	},
+	//the lines of code on top show the replacements that can be switched for the variables in the code.
 	
 	
 	// Run on page load.
