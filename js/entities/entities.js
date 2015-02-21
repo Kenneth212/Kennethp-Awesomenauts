@@ -348,7 +348,8 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 			update: function() {
 				this.now = new Date().getTime();
-
+				//so some of the code had to be taken off because some update
+				//this code is the replacement or plan b
 				if(game.data.player.dead){
 					me.game.world.removeChild(game.data.player);
 					me.state.current().resetPlayer(10, 0);
