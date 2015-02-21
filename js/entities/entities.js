@@ -11,14 +11,15 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 		this.type ="PlayerEntity";
-		this.health = 20;
+		this.health = game.data.playerHealth;
 		//this shows how mush health we have
 		//the health can be changed
-		this.body.setVelocity(5, 20);
+		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//Keeps track of which direction your charcter is going
 		this.facing = "right";
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
+		this.dead = false;
 		this.lastAttack = new Date().getTime();
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
@@ -32,6 +33,13 @@ game.PlayerEntity = me.Entity.extend({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
+
+		if (this.health <= 0) {
+			this.dead = true;
+			this.pos.x = 10;
+			this.pos.y = 1;
+			this.health = game.data.playerHealth;
+		}
 		if(me.input.isKeyPressed("right")){
 			//adds to the position or my x by the velocity defined above in
 			//setsVelocity() and multiplying it by me.timer.tick.
@@ -114,12 +122,12 @@ game.PlayerEntity = me.Entity.extend({
 				//used to block him from the left and the right
 			}
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				//1000 = equals number of times to end enemy base
 				console.log("tower Hit");
 				//will show in inspect element to see if the enemy base is actually getting hit
 				this.lastHit = this.now;
-				response.b.loseHealth();
+				response.b.loseHealth(game.data.playerAttack);
 			}
 		}else if (response.b.type==='EnemyCreep'){
 			var xdif = this.pos.x - response.b.pos.x;
@@ -137,13 +145,13 @@ game.PlayerEntity = me.Entity.extend({
 				}
 			}
 			//the 1000 is about the same to 10 
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 					 && (Math.abs(ydif) <=40) && 
 					 ((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 				//this will allow the player to kill the enemy creep from both left and right.
 					 	{
 				this.lastHit = this.now;
-				response.b.loseHealth(1);
+				response.b.loseHealth(game.data.playerAttack);
 				//this number shows the amount of times it will take to kill the enemy
 
 			}
@@ -164,7 +172,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 			}
 		}]);
 		this.broken = false;
-		this.health = 10;
+		this.health = game.data.playerBaseHealth;
 		this.alwaysUpdate = true;
 		this.body.onCollision = this.onCollision.bind(this);
 		
@@ -209,7 +217,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			}
 		}]);
 		this.broken = false;
-		this.health = 10;
+		this.health = game.data.enemyBaseHealth;
 		this.alwaysUpdate = true;
 		this.body.onCollision = this.onCollision.bind(this);
 
@@ -253,7 +261,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 					return (new me.Rect(0, 0, 32, 64)).toPolygon();
 				}
 			}]);
-			this.health = 10;
+			this.health = enemyCreepHealth;
 			this.now = new Date().getTime();
 			this.alwaysUpdate = true;
 			//this.attacking lets us know if the enemy is currently attacking
@@ -307,7 +315,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 					this.lastHit = this.now;
 					//makes the player base call its loseHealth function and passes it a 
 					//damage of 1 
-					response.b.loseHealth(1);
+					response.b.loseHealth(game.data.enemyCreepAttack);
 				}
 			}else if (response.b.type==='PlayerEntity'){
 				var xdif = this.pos.x - response.b.pos.x;
@@ -326,7 +334,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 					this.lastHit = this.now;
 					//makes the player base call its loseHealth function and passes it a 
 					//damage of 1 
-					response.b.loseHealth(1);
+					response.b.loseHealth(game.data.enemyCreepAttack);
 				}
 			}
 		}
