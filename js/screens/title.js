@@ -7,13 +7,13 @@ game.TitleScreen = me.ScreenObject.extend({
 	
 
 		me.input.bindKey(me.input.KEY.ENTER, "start");
-
+		//this line of code will make the enter button be pressed and show up the game.
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height]);
 				this.font = new me.Font("Arial", 46, "white");
 			},
-
+			//The code here will make an enter button show up and to make the game functional.
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
 				this.font.draw(renderer.getContext(), "Press ENTER to play!", 250, 530);
