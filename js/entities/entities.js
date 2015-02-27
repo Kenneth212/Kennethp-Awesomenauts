@@ -14,7 +14,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.renderable.setCurrentAnimation("idle");
 	},
-
+	//this function will contain player main code
 	setSuper: function () {
 		this._super(me.Entity, "init", [x, y, {
 			image: "player",
@@ -27,19 +27,19 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 	},
-
+	//this function will contain all the timers
 	setPlayerTimers: function() {
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
 		this.lastAttack = new Date().getTime();
 	},
-
+	//this function will contain attributes
 	setAttributes: function(){
 		this.health = game.data.playerHealth;
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		this.attack = game.data.playerAttack;
 	},
-
+	//this function wil contain flags
 	setFlags: function() {
 		//Keeps track of which direction your charcter is going
 		this.facing = "right";
