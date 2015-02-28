@@ -54,35 +54,13 @@ game.PlayerEntity = me.Entity.extend({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
-		//this will show up in the inspect element to see if the player is losing health
-		if (this.health <= 0) {
-			this.dead = true;
-		}
-		if(me.input.isKeyPressed("right")){
-			//adds to the position or my x by the velocity defined above in
-			//setsVelocity() and multiplying it by me.timer.tick.
-			//me.timer.tick makes the movement look smooth
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			this.facing = "right";
-			//used when interacting with the enemy base 
-			this.flipX(true);
-		}
-		else if (me.input.isKeyPressed("left")){
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			this.facing = "left";
-			this.flipX(false);
-		}
 
-		else{
-			this.body.vel.x = 0;
-		}
+		this.dead = checkIfDead();
 
-	if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
-		this.jumping = true;
-		this.body.vel.y -= this.body.accel.y * me.timer.tick;
-		//this will make the player jump.
-		me.audio.play("jump");
-	}
+		this.checkKeyPressedAndMove();
+
+
+
 
 	if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
@@ -111,6 +89,51 @@ game.PlayerEntity = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+
+	checkIfDead: function() {
+		//this will show up in the inspect element to see if the player is losing health
+		if (this.health <= 0) {
+			this.dead = true;
+		}
+		return false;
+	},
+
+	checkKeyPressedAndMove: function() {
+		if(me.input.isKeyPressed("right")){
+			this.moveRight();
+		}else if (me.input.isKeyPressed("left")){
+			this.move:Left();
+		}else{
+			this.body.vel.x = 0;
+		}
+
+		if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
+			this.jump();
+			me.audio.play("jump");
+		}
+	},
+
+	moveRight: function(){
+			//adds to the position or my x by the velocity defined above in
+			//setsVelocity() and multiplying it by me.timer.tick.
+			//me.timer.tick makes the movement look smooth
+			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.facing = "right";
+			//used when interacting with the enemy base 
+			this.flipX(true);
+	},
+
+	moveLeft: function(){
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.facing = "left";
+			this.flipX(false);
+	},
+
+	jump: function(){
+		this.jumping = true;
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+			//this will make the player jump.
+	}
 
 	loseHealth: function(damage){
 		this.health = this.health - damage;
