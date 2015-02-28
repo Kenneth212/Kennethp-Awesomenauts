@@ -143,16 +143,21 @@ game.PlayerEntity = me.Entity.extend({
 
 	collideHandler: function(response) {
 		if(response.b.type==='EnemyBaseEntity') {
-			var ydif = this.pos.y - response.b.pos.y;
-			var xdif = this.pos.x - response.b.pos.x;
+			this.collideWithEnemyBase(response);
+		}else if (response.b.type==='EnemyCreep'){
+			this.collideWithEnemyCreep(response);
+		}
+	},
 
+	collideWithEnemyBase: function(response){
+		var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
 			if(ydif<-40 && xdif<70 && xdif>-35){
 				this.body.falling = false;
 				this.body.vel.y = -1;
 				//used so we dont fall from the enemy base
 				//the -40 is used to block the character
 			}
-
 			else if(xdif>-35 && this.facing==='right' && (xdif<0) && (xdif<0) && ydif>-50) {
 				this.body.vel.x = 0;
 				//this.pos.x = this.pos.x -1;
@@ -161,29 +166,42 @@ game.PlayerEntity = me.Entity.extend({
 				//this.pos.x = this.pos.x +1;
 				//used to block him from the left and the right
 			}
-
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				//1000 = equals number of times to end enemy base
 				//will show in inspect element to see if the enemy base is actually getting hit
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.playerAttack);
 			}
-		}else if (response.b.type==='EnemyCreep'){
+	},
+
+	collideWithEnemyCreep: function(response){
+
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
+			
+			this.stopMovement(xdif);
 
-			if (xdif>0) {
-				//this.pos.x = this.pos.x + 1;
+			if(this.checkAttack(xdif, ydif)){
+				this.hitCreep(response);
+			};
+
+
+	},
+
+	stopMovement: function(xdif){
+		if (xdif>0) {
 				if(this.facing==="left"){
 					this.body.vel.x = 0;
 				}
 			}else {
-				//this.pos.x = this.pos.x - 1;
 				if(this.facing==="right"){
 					this.body.vel.x = 0;
 				}
 			}
-			//the 1000 is about the same to 10 
+	},
+
+	checkAttack: function(xdif, ydif){
+		//the 1000 is about the same to 10 
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 					 && (Math.abs(ydif) <=40) && 
 					 ((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
@@ -191,7 +209,13 @@ game.PlayerEntity = me.Entity.extend({
 					 	{
 				this.lastHit = this.now;
 				//if the creep health is less than our attack, execute code in if statement
-				if(response.b.health <= game.data.playerAttack) {
+				return true;
+			}
+			return false; 
+	},
+
+	hitCreep: function(){
+						if(response.b.health <= game.data.playerAttack) {
 					//adds one gold for a creep kill
 					game.data.gold += 1;
 					console.log("Current gold: " + game.data.gold);
@@ -199,9 +223,6 @@ game.PlayerEntity = me.Entity.extend({
 
 				response.b.loseHealth(game.data.playerAttack);
 				//this number shows the amount of times it will take to kill the enemy
-
-			}
-		}
 	}
 });
 
