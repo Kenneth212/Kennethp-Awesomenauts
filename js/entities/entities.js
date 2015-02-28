@@ -173,7 +173,7 @@ game.PlayerEntity = me.Entity.extend({
 				response.b.loseHealth(game.data.playerAttack);
 			}
 	},
-
+	//this will contain the code for the colliding with enemy
 	collideWithEnemyCreep: function(response){
 
 			var xdif = this.pos.x - response.b.pos.x;
@@ -213,7 +213,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 			return false; 
 	},
-
+	//this new functions will contain the attacking/ animation for the character code.
 	hitCreep: function(){
 						if(response.b.health <= game.data.playerAttack) {
 					//adds one gold for a creep kill
