@@ -28,7 +28,8 @@ var game = {
 		exp1: 0,
 		exp2: 0,
 		exp3: 0,
-		exp4: 0
+		exp4: 0,
+		win: ""
 
 	},
 	//the lines of code on top show the replacements that can be switched for the variables in the code.
@@ -70,6 +71,7 @@ var game = {
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		me.pool.register("ExperienceManager", game.ExperienceManager);
 		//the true makes more enemies
 
 
