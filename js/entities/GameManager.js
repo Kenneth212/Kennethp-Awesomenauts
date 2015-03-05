@@ -48,7 +48,7 @@ game.HeroDeathManager =  Object.extend({
 		return true;
 	}
 });
-
+//this function was created in video 36 and it is used to check the experience
 game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
