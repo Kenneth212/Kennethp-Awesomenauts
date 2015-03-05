@@ -15,6 +15,7 @@ game.GameManager = Object.extend({
 
 				return true;
 			},
+			//this is a function to contain the gold timer check
 
 			goldTimerCheck: function(){
 					if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
@@ -22,7 +23,7 @@ game.GameManager = Object.extend({
 					console.log("Current gold : " + game.data.gold);
 				}
 			},
-
+			//this is a function to contain the creep timer check
 			creepTimerCheck: function(){
 					if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 					this.lastCreep = this.now;
