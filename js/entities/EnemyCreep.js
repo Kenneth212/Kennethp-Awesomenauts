@@ -28,6 +28,7 @@
 		},
 		//this is too make the creep to lose health.
 		loseHealth: function(damage){
+			console.log(this.health);
 			this.health = this.health - damage;
 		},
 

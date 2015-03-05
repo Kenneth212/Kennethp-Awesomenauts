@@ -8,25 +8,40 @@ game.GameManager = Object.extend({
 
 			update: function() {
 				this.now = new Date().getTime();
+				this.goldTimerCheck();
+				this.creepTimerCheck();
 				//so some of the code had to be taken off because some update
 				//this code is the replacement or plan b
-				if(game.data.player.dead){
-					me.game.world.removeChild(game.data.player);
-					me.state.current().resetPlayer(10, 0);
-				}
 
-				if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
+				return true;
+			},
+
+			goldTimerCheck: function(){
+					if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
 					game.data.gold += 1;
 					console.log("Current gold : " + game.data.gold);
-
 				}
+			},
 
-				if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
+			creepTimerCheck: function(){
+					if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 					this.lastCreep = this.now;
 					var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
 					me.game.world.addChild(creepe, 5);
 				}
-
-				return true;
 			}
 		});
+
+game.HeroDeathManager =  Object.extend({
+	init: function(x, y, settings){
+		this.alwaysUpdate = true;
+
+	},
+
+	update: function(){
+		if(game.data.player.dead){
+			me.game.world.removeChild(game.data.player);
+			me.state.current().resetPlayer(10, 0);
+		}
+	}
+}):

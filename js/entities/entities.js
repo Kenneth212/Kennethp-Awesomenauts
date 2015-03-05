@@ -1,6 +1,6 @@
 game.PlayerEntity = me.Entity.extend({
 	init: function(x, y, settings) {
-		this.setSuper();
+		this.setSuper(x, y);
 		this.setPlayerTimers();
 		this.setAttributes();
 		this.type ="PlayerEntity";
@@ -10,12 +10,12 @@ game.PlayerEntity = me.Entity.extend({
 		//this.dead will show us if if its false that the player is dead(only shows up if its false)
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
-		this.addAnimation():
+		this.addAnimation();
 
 		this.renderable.setCurrentAnimation("idle");
 	},
 	//this function will contain player main code
-	setSuper: function () {
+	setSuper: function (x, y) {
 		this._super(me.Entity, "init", [x, y, {
 			image: "player",
 			width: 64,
@@ -55,7 +55,7 @@ game.PlayerEntity = me.Entity.extend({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
-		this.dead = checkIfDead();
+		this.dead = this.checkIfDead();
 		this.checkKeyPressedAndMove();
 		this.setAnimation();
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -77,7 +77,7 @@ game.PlayerEntity = me.Entity.extend({
 		if(me.input.isKeyPressed("right")){
 			this.moveRight();
 		}else if (me.input.isKeyPressed("left")){
-			this.move:Left();
+			this.moveLeft();
 		}else{
 			this.body.vel.x = 0;
 		}
@@ -214,7 +214,7 @@ game.PlayerEntity = me.Entity.extend({
 			return false; 
 	},
 	//this new functions will contain the attacking/ animation for the character code.
-	hitCreep: function(){
+	hitCreep: function(response){
 						if(response.b.health <= game.data.playerAttack) {
 					//adds one gold for a creep kill
 					game.data.gold += 1;

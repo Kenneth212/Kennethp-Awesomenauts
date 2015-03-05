@@ -20,7 +20,8 @@ var game = {
 		enemyCreepAttackTimer: 1000,
 		playerMoveSpeed: 5,
 		creepMoveSpeed: 5,
-		gameManager: "",
+		gameTimerManager: "",
+		heroDeathManager: "".
 		player: "",
 		exp: 0,
 		gold: 0,
@@ -67,7 +68,8 @@ var game = {
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-		me.pool.register("GameManager", game.GameManager),
+		me.pool.register("GameTimerManager", game.GameTimerManager);
+		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		//the true makes more enemies
 
 
