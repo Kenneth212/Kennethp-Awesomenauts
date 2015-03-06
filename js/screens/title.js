@@ -34,6 +34,29 @@ game.TitleScreen = me.ScreenObject.extend({
 			}	
 		})));
 
+		//this line of code will make the enter button be pressed and show up the game.
+		me.game.world.addChild(new (me.Renderable.extend({
+			init: function() {
+				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
+				this.font = new me.Font("Arial", 46, "white");
+				me.input.register.PointerEvent("pointerdown", this, this.newGame.bind(this), true)
+			},
+			//The code here will make an enter button show up and to make the game functional.
+			draw: function(renderer) {
+				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
+			},
+
+			update: function(dt){
+				return true;
+			},
+			//the new game function contains some specific parts for
+			//the experience
+			newGame: function(){
+				me.input.releasePointerEvent('pointerdown', this);
+				me.state.change(me.state.PLAY);
+			}	
+		})));
+
 	},
 	//this will make the title show up, unfortunately it will not go into your game so you wont 
 	//be able to use the game till the title is functional
