@@ -21,7 +21,8 @@ game.TitleScreen = me.ScreenObject.extend({
 			update: function(dt){
 				return true;
 			},
-
+			//the new game function contains some specific parts for
+			//the experience
 			newGame: function(){
 				me.input.releasePointerEvent('pointerdown', this);
 				me.save.remove('exp');
