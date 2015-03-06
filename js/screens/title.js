@@ -34,7 +34,8 @@ game.TitleScreen = me.ScreenObject.extend({
 			}	
 		})));
 
-		//this line of code will make the enter button be pressed and show up the game.
+		//this line of code will make the enter button be pressed and show up the game
+		//this code was copyed and some code was removed
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
