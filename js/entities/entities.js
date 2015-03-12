@@ -84,7 +84,6 @@ game.PlayerEntity = me.Entity.extend({
 
 		if (me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
 			this.jump();
-			me.audio.play("jump");
 		}
 
 		this.attacking = me.input.isKeyPressed("attack");
@@ -107,15 +106,15 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	jump: function(){
-		this.jumping = true;
+		this.body.jumping = true;
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+			me.audio.play("jump");
 			//this will make the player jump.
 	},
 
 	setAnimation: function(){
 			if(this.attacking) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
-				console.log(!this.renderable.isCurrentAnimation("attack"));
 				//Sets the current animation to attack and once that is over
 				//goes back to the idle animation
 				this.renderable.setCurrentAnimation("attack", "idle");

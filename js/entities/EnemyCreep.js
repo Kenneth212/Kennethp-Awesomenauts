@@ -20,7 +20,7 @@
 			//keeps trackof the last time our creep hit anything
 			this.lastHit = new Date().getTime();
 			this.body.setVelocity(3, 20);
-			this. type = "EnemyCreep";
+			this.type = "EnemyCreep";
 
 			this.renderable.addAnimation("walk", [3, 4, 5],  80);
 			this.renderable.setCurrentAnimation('walk');

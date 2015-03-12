@@ -11,11 +11,11 @@ game.TitleScreen = me.ScreenObject.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
 				this.font = new me.Font("Arial", 46, "white");
-				me.input.register.PointerEvent("pointerdown", this, this.newGame.bind(this), true)
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true)
 			},
 			//The code here will make an enter button show up and to make the game functional.
 			draw: function(renderer) {
-				this.font.draw(renderer.getContext(), "START A NEW GAME", this.pos.x, this.pos.y);
+				this.font.draw(renderer.getContext(), "START NEW GAME", this.pos.x, this.pos.y);
 			},
 
 			update: function(dt){
@@ -41,7 +41,7 @@ game.TitleScreen = me.ScreenObject.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
 				this.font = new me.Font("Arial", 46, "white");
-				me.input.register.PointerEvent("pointerdown", this, this.newGame.bind(this), true)
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true)
 			},
 			//The code here will make an enter button show up and to make the game functional.
 			draw: function(renderer) {

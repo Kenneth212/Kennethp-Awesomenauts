@@ -1,4 +1,4 @@
-game.GameManager = Object.extend({
+game.GameTimerManager = Object.extend({
 			init: function(x, y, settings){
 				this.now = new Date().getTime();
 				this.lastCreep = new Date().getTime();
