@@ -41,13 +41,16 @@ game.SpendExp = me.ScreenObject.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
 				this.font = new me.Font("Arial", 46, "white");
-
 			},
 			//The code here will make an enter button show up and to make the game functional.
 			draw: function(renderer) {
-				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
-	
-			}
+				this.font.draw(renderer.getContext(), "PRESS F1-F4 TO BUY, F5 TO SKIP", this.pos.x, this.pos.y);
+				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 100, this.pos.y + 50);
+				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 100);
+				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 150);
+				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 200);
+				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 250);
+			},
 	
 		})));
 
