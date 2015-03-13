@@ -50,6 +50,7 @@ game.SpendExp = me.ScreenObject.extend({
 				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 150);
 				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 200);
 				this.fond.draw(renderer.detContext(), "CURRENT EXP: " + game.data.exp. toString(), this.pos.x + 200, this.pos.y + 250);
+				//these will create more buttons in the game and I am going to fix it later, not going to do it now because it is not mandatory.
 			},
 	
 		})));
