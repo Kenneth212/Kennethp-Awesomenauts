@@ -61,6 +61,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				game.data.exp4 = me.save.exp4;
 				me.input.releasePointerEvent('pointerdown', this);
 				me.state.change(me.state.SPENDEXP);
+			//so this will make the continue button be pressed and head over to the spend page
 			}	
 		})));
 
