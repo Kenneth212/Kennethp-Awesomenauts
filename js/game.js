@@ -32,6 +32,7 @@ var game = {
 		win: "",
 		pausePos: "",
 		buyscreen: "",
+		buytext: "",
 
 	},
 	//the lines of code on top show the replacements that can be switched for the variables in the code.
