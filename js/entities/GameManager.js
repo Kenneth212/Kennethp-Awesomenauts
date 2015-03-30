@@ -160,6 +160,7 @@ game.ExperienceManager = Object.extend({
 			me.input.unbindKey(me.input.KEY.F5, "F5", true);
 			me.input.unbindKey(me.input.KEY.F6, "F6", true);
 			me.game.world.removeChild(game.data.buytext);
+			//this code connects to the to other code above, so if you press like F5 you can buy a power-up
 
 		}
 
