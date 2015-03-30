@@ -2,6 +2,7 @@ game.LoadProfile = me.ScreenObject.extend({
 	/**	
 	 *  action to perform on state change
 	 */
+	 //so this file will create an area to load the profile that was already played by the player. 
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); // TODO
 	
