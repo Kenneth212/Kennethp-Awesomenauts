@@ -139,6 +139,8 @@ game.ExperienceManager = Object.extend({
 				this.font.draw(renderer.getContext(), "W Ability " + game.data.ability2 +, " Cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
 				this.font.draw(renderer.getContext(), "E Ability " + game.data.ability3 +, " Cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y);
 				//these will create more buttons in the game and I am going to fix it later, not going to do it now because it is not mandatory.
+				//these are power-ups that will be very helpful in the game.
+				//In the game the players will be able to buy the power-ups to make the game more enjoyable.
 			},
 	
 
