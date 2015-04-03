@@ -134,19 +134,19 @@ game.ExperienceManager = Object.extend({
 			//The code here will make an enter button show up and to make the game functional.
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT. Current Gold: " + game.data.gold, this.pos.x, this.pos.y);
-				this.font.draw(renderer.getContext(), "Skill 1: Increase Damage. Current Level: " + game.data.skill1 +, " Cost: " + ((game.data.skill1+1)*10),this.pos.x, this.pos.y + 40);
-				this.font.draw(renderer.getContext(), "Skill 2: Run Faster! Current Level: "  + game.data.skill2 +, " Cost: " + ((game.data.skill2+1)*10), this.pos.x, this.pos.y + 80);
-				this.font.draw(renderer.getContext(), "Skill 3: Increase Health. Current Level " + game.data.skill3 +, " Cost: " + ((game.data.skill3+1)*10), this.pos.x, this.pos.y + 120);
-				this.font.draw(renderer.getContext(), "O Ability " + game.data.ability1 +, " Cost: " + ((game.data.ability1+1)*10), this.pos.x, this.pos.y + 160);
-				this.font.draw(renderer.getContext(), "W Ability " + game.data.ability2 +, " Cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
-				this.font.draw(renderer.getContext(), "E Ability " + game.data.ability3 +, " Cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y);
+				this.font.draw(renderer.getContext(), "Skill 1: Increase Damage. Current Level: " + game.data.skill1 + " Cost: " + ((game.data.skill1+1)*10),this.pos.x, this.pos.y + 40);
+				this.font.draw(renderer.getContext(), "Skill 2: Run Faster! Current Level: "  + game.data.skill2 + " Cost: " + ((game.data.skill2+1)*10), this.pos.x, this.pos.y + 80);
+				this.font.draw(renderer.getContext(), "Skill 3: Increase Health. Current Level " + game.data.skill3 + " Cost: " + ((game.data.skill3+1)*10), this.pos.x, this.pos.y + 120);
+				this.font.draw(renderer.getContext(), "O Ability " + game.data.ability1 + " Cost: " + ((game.data.ability1+1)*10), this.pos.x, this.pos.y + 160);
+				this.font.draw(renderer.getContext(), "W Ability " + game.data.ability2 + " Cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
+				this.font.draw(renderer.getContext(), "E Ability " + game.data.ability3 + " Cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y);
 				//these will create more buttons in the game and I am going to fix it later, not going to do it now because it is not mandatory.
 				//these are power-ups that will be very helpful in the game.
 				//In the game the players will be able to buy the power-ups to make the game more enjoyable.
 			},
 	
 
-		})));
+		}));
 	me.game.world.addChild(game.data.buytext, 35);
 		},
 
