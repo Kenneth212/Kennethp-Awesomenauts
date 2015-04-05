@@ -94,6 +94,7 @@
 		$("$mainmenu").bind("click", function(){
 			me.state.change(me.state.MENU);
 		});
+		//So the register is made to see if the player can be registered into the game as a player.
 		$("$register").bind("click", function(){
 			$.ajax({
 				type: "POST",
@@ -115,7 +116,27 @@
 				alert("Fail");
 			});	
 		});	
-	
+		$("$load").bind("click", function(){
+			$.ajax({
+				type: "POST",
+				url: "php/controller/login-user.php",
+				data: {
+					username: $('$username').val(),
+					password: $('$password').val()
+				},
+				dataType:"text"
+			})
+			.success(function(response){
+				if(response==="Invalid username and password"){
+					me.state.change(me.state.PLAY);
+				}else{
+					alert(response);
+				}
+			})
+			.fail(function(response){
+				alert("Fail");
+			});	
+		});
 		</script>
 	</body>
 </html>
