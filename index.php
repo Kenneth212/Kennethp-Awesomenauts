@@ -29,7 +29,7 @@
 			</div>
 			<div class='password'>
 				<label for='password'>Password</label>
-				<input type='text' name='password'>
+				<input type='password' name='password'>
 			</div>
 
 			<button type='button' id='register'>Register</button>
@@ -128,9 +128,15 @@
 			})
 			.success(function(response){
 				if(response==="Invalid username and password"){
-					me.state.change(me.state.PLAY);
-				}else{
 					alert(response);
+				}else{
+					var data = jQuery.parseJSON(response);
+					game.data.exp = data["exp"];
+					game.data.exp1 = data["exp1"];
+					game.data.exp2 = data["exp2"];
+					game.data.exp3 = data["exp3"];
+					game.data.exp4 = data["exp4"];
+					me.state.change(me.state.PLAY);
 				}
 			})
 			.fail(function(response){

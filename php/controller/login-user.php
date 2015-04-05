@@ -30,9 +30,9 @@
 			//the echo here will use all the other arrays and and form one statement.
 		}
 		else {
-			echo "<p>Invalid username and password</p>";
+			echo "Invalid username and password";
 		}
 	}
 	else {
-		echo "<p>Invalid username and password</p>";
+		echo "Invalid username and password";
 	}
