@@ -34,6 +34,8 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.save.remove('exp4');
 				me.save.add({exp: 0,exp: 1,exp: 2,exp: 3,exp: 4,})
 				me.state.change(me.state.NEW);
+				//so the option1 and option2 will give us the control of the game to press and on the game and
+				//nothing horrible will happen to the controls.
 			}	
 		})));
 
@@ -67,6 +69,9 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.input.releasePointerEvent('pointerdown', this);
 				me.state.change(me.state.LOAD);
 			//so this will make the continue button be pressed and head over to the spend page
+			//the option1 and option2 will be very helpful to the game.
+			//and alo the pointer events with option1 and option2 will take the player off from going to the menu screen and 
+			//leave the screen as is.
 			}	
 		}));
 
