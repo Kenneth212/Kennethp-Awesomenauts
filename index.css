@@ -31,7 +31,8 @@ body {
 	image-rendering: optimize-contrast;
 	-ms-interpolation-mode: nearest-neighbor;
 }
-
+/*The lines of code that are below will make the appearance of the game different.
+This will also have a change in how the game looks. */
 #input{
 	display: block;
 	text-align: center;

@@ -213,7 +213,7 @@ game.ExperienceManager = Object.extend({
 		},
 
 		makePurchase: function(skill){
-			if(skill1 === 1)
+			if(skill1 === 1){
 			game.data.gold -= ((game.data.ability1 +1)* 10);
 			game.data.skill1 += 1;
 			game.data.player.attack += 1;
