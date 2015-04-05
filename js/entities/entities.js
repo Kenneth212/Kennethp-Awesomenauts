@@ -123,7 +123,9 @@ game.PlayerEntity = me.Entity.extend({
 			this.throwSpear();
 		}
 	},
-
+	//the throw spear will be made to have more animations, however these animations 
+	//are abilities there is about three new abilities
+	//throw spear is one of them and what they do is let the player have more controls overtime.
 	throwSpear: function(){
 		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
 			this.lastSpear = this.now;
