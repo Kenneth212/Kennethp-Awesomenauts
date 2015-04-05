@@ -10,7 +10,7 @@
 	//the echo will show us whats being stored in the variable
 
 	$query = $_SESSION["connection"]->query("INSERT INTO users SET "
-	 	. "email = '$email',"
+	 	. "email = '',"
 	 	. "username = '$username',"
 	 	. "password = '$hashedPassword',"
 	 	. "salt = '$salt', "

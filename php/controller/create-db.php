@@ -13,12 +13,5 @@
 		."exp3 int(4),"
 		."exp4 int(4),"
 		. "PRIMARY KEY (id))";
-
-	if($query) {
-		echo "<p>Successfully created table: users</p>";
-	}
-	else {
-		echo "<p>" . $_SESSION["connection"]->error . "</p>";
-	}
 	//the reason for not null is to reset new password, username, email
 	// added paragraph tags to the code
