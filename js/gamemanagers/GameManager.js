@@ -39,6 +39,9 @@ game.ExperienceManager = Object.extend({
 			},
 			dataType:"text"
 		})
+				//This will allow the game to save other profiles in the game
+				//This will also allow the game to send the player back into the game and see how much
+				//experience the player has gotten and see the level and the amount of gold the player might or not have.
 				.success(function(response){
 					if(response==="true"){
 					me.state.change(me.state.MENU);
