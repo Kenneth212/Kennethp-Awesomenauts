@@ -22,6 +22,7 @@ var game = {
 		creepMoveSpeed: 5,
 		gameTimerManager: "",
 		heroDeathManager: "",
+		spearTimer: 15,
 		player: "",
 		exp: 0,
 		gold: 0,
@@ -88,9 +89,9 @@ var game = {
 		me.pool.register("SpendExp", game.SpendGold);
 		me.pool.register("LOAD", game.SpendGold);
 		me.pool.register("NEW", game.SpendGold);
+		me.pool.register("spear", game.SpearThrow);
 		//the true makes more enemies
-
-
+		
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());

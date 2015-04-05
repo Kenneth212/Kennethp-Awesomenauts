@@ -31,6 +31,7 @@ game.PlayerEntity = me.Entity.extend({
 	setPlayerTimers: function() {
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
+		this.lastSpear = this.now;
 		this.lastAttack = new Date().getTime();
 	},
 	//this function will contain attributes
@@ -57,6 +58,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.dead = this.checkIfDead();
 		this.checkKeyPressedAndMove();
+		this.checkAbilityKeys();
 		this.setAnimation();
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//used to check for collisions
@@ -111,6 +113,25 @@ game.PlayerEntity = me.Entity.extend({
 			me.audio.play("jump");
 			//this will make the player jump.
 	},
+
+	checkAbilityKeys: function(){
+		if(me.input.isKeyPressed("skill1")){
+			//this.speedBurst();
+		}else if(me.input.isKeyPressed("skill2")){
+			//this.eatCreep();
+		}else if(me.input.isKeyPressed("skill2")){
+			this.throwSpear();
+		}
+	},
+
+	throwSpear: function(){
+		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
+			this.lastSpear = this.now;
+				var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+				me.game.world.addChild(spear, 10);
+		}
+	},
+
 
 	setAnimation: function(){
 			if(this.attacking) {
