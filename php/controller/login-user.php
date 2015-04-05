@@ -27,6 +27,7 @@
 			$array["exp4"] = $row["exp4"];
 
 			echo "json_encode(array)";
+			//the echo here will use all the other arrays and and form one statement.
 		}
 		else {
 			echo "<p>Invalid username and password</p>";

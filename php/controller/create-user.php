@@ -19,7 +19,8 @@
 	 	. "exp2 = 0,"
 	 	. "exp3 = 0,"
 	 	. "exp4 = 0");
-
+	//There is no comma after the last 0 because the code will break if there is a 0.
+	//Need this for Ajax on Index.php
 	$_SESSION["name"] = $username;
 
 	if ($query) {
