@@ -42,7 +42,8 @@ var game = {
 		pausePos: "",
 		buyscreen: "",
 		buytext: "",
-		minimap: ""
+		minimap: "",
+		miniPlayer: ""
 
 	},
 	//the lines of code on top show the replacements that can be switched for the variables in the code.
