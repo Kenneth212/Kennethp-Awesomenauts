@@ -94,6 +94,7 @@ var game = {
 		me.pool.register("NEW", game.SpendGold);
 		me.pool.register("spear", game.SpearThrow);
 		me.pool.register("minimap", game.MiniMap, true);
+		me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 		//the true makes more enemies
 		
 		me.state.set(me.state.MENU, new game.TitleScreen());
