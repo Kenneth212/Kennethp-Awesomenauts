@@ -1,5 +1,6 @@
 game.SpearThrow = me.Entity.extend({
 	//this will be made for the player to have new abilities
+	//This will only work if the player as killed the enemy at least once to get 10 gold and to buy the ability.
 	init: function(x, y, settings, facing){
 		this._super(me.Entity, 'init', [x, y, {
 				image: "spear",
@@ -18,7 +19,8 @@ game.SpearThrow = me.Entity.extend({
 			this.facing = facing;
 		},
 	},
-
+	//the code below here will activate the arrow to move both left and right.
+	//also the code will work when the palyer buys the ability from the "shop".
 	update: function(delta){
 		if(this.facing === "left"){
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -33,7 +35,7 @@ game.SpearThrow = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 			return true;
 	},
-
+	//this code below is used to make the arrow hit the enemy or enemy base and kill.
 	collideHandler: function(response) {
 			if(response.b.type==='EnemyBase' || response.b.type==='EnemyCreep') {
 				response.b.loseHealth(this.attack);	
