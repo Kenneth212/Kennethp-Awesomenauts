@@ -46,6 +46,7 @@ var game = {
 		miniPlayer: ""
 
 	},
+	//so for video 66 there was some code missing but not really much to comments about.
 	//the lines of code on top show the replacements that can be switched for the variables in the code.
 	
 	
