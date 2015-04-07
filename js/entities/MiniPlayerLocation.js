@@ -12,7 +12,9 @@ game.MiniPlayerLocation = me.Entity.extend({
 		this.floating = true;
 		this.image = me.video.createCanvas(this.settings.width, this.settings.height);
 		var ctx = me.video.renderer.getContext2d(this.image);
-
+		//all the code in this file will correspond to the player and the minimap
+		//so if the player moves then the player in the minimap moves the same way
+		//that the original player will move.
 		ctx.fillStyle = "rgba(0, 192, 32, 0.75)";
 		ctx.strokeStyle = "blue";
 		ctx.lineWidth = 2;
