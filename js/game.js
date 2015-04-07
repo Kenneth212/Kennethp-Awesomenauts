@@ -42,6 +42,7 @@ var game = {
 		pausePos: "",
 		buyscreen: "",
 		buytext: "",
+		minimap: ""
 
 	},
 	//the lines of code on top show the replacements that can be switched for the variables in the code.
@@ -92,6 +93,7 @@ var game = {
 		me.pool.register("LOAD", game.SpendGold);
 		me.pool.register("NEW", game.SpendGold);
 		me.pool.register("spear", game.SpearThrow);
+		me.pool.register("minimap", game.MiniMap, true);
 		//the true makes more enemies
 		
 		me.state.set(me.state.MENU, new game.TitleScreen());
