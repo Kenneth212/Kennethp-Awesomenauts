@@ -26,6 +26,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		game.data.minimap = me.pool.pull("minimap", 10, 10,{});
 		me.game.world.addChild(game.data.minimap, 30);
+		//this will make the minimap not cover the game completely
 
 
 		me.input.bindKey(me.input.KEY.B, "buy");
