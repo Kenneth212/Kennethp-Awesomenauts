@@ -127,9 +127,9 @@ game.PlayerEntity = me.Entity.extend({
 	//are abilities there is about three new abilities
 	//throw spear is one of them and what they do is let the player have more controls overtime.
 	throwSpear: function(){
-		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
+		if((this.now-this.lastSpear) >= game.data.spearTimer*1000 && game.data.ability3 > 0){
 			this.lastSpear = this.now;
-				var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+				var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
 				me.game.world.addChild(spear, 10);
 		}
 	},

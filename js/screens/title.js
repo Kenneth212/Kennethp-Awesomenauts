@@ -37,11 +37,11 @@ game.TitleScreen = me.ScreenObject.extend({
 				//so the option1 and option2 will give us the control of the game to press and on the game and
 				//nothing horrible will happen to the controls.
 			}	
-		})));
+		}));
 
 		//this line of code will make the enter button be pressed and show up the game
 		//this code was copyed and some code was removed
-		me.game.world.addChild(new (me.Renderable.extend({
+		me.game.world.addChild = new (me.Renderable.extend({
 
 		game.data.option2 = new (me.Renderable.extend({
 			init: function() {
