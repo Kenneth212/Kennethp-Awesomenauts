@@ -134,7 +134,7 @@ game.SpendGold = Object.extend({
 		},
 
 		makePurchase: function(skill){
-		if(skill === 1)
+		if(skill === 1){
 			game.data.gold -= ((game.data.ability1 +1)* 10);
 			game.data.skill1 += 1;
 			game.data.player.attack += 1;
@@ -154,5 +154,6 @@ game.SpendGold = Object.extend({
 			game.data.gold -= ((game.data.ability3 +1)* 10);
 			game.data.ability3 += 1;
 		}
+	}
 
 	});

@@ -17,7 +17,6 @@ game.SpearThrow = me.Entity.extend({
 			this.attack = game.data.ability3*3;
 			this.type = "spear";
 			this.facing = facing;
-		},
 	},
 	//the code below here will activate the arrow to move both left and right.
 	//also the code will work when the palyer buys the ability from the "shop".

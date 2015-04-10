@@ -91,9 +91,10 @@ var game = {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceManager", game.ExperienceManager);
-		me.pool.register("SpendExp", game.SpendGold);
+		me.pool.register("SpendExp", game.SpendExp);
 		me.pool.register("LOAD", game.SpendGold);
 		me.pool.register("NEW", game.SpendGold);
+		me.pool.register("SpendGold", game.SpendGold);
 		me.pool.register("spear", game.SpearThrow);
 		me.pool.register("minimap", game.MiniMap, true);
 		me.pool.register("miniplayer", game.MiniPlayerLocation, true);
